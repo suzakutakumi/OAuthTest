@@ -1,0 +1,24 @@
+<html>
+    <body>
+        {{range .}}
+        <span>{{.Name}}:{{.Date}} {{.Content}}</span><br>
+        {{end}}
+        <br>
+            日付:<input type="text" id="date">
+            内容:<input type="text" id="content">
+            <input id="send" type="submit" value="SetSchedule">
+        
+            <script>
+                document.getElementById('send').onclick=function(){
+                    const params={
+                        date:document.getElementById("date").value,
+                        content:document.getElementById("content").value,
+                    }
+                    console.log("./SetSchedule")
+                    const query_params= new URLSearchParams(params)
+                    fetch("./SetSchedule?"+query_params,{"method":"POST"}).then(()=>"ok")
+                    window.location.reload();
+                }
+            </script>
+    </body>
+</html>
